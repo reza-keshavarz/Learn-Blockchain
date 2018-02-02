@@ -1,4 +1,4 @@
-This is a simple blockchain application to demonstrate how blockchain works. The code has been borrowed from SOURCE but there has been some changes to make it simpler to understand. Also some code has been added to it to make it possible to run it in interactive mode from terminal.
+This is a simple blockchain application to demonstrate how blockchain works. The code has been borrowed from <a href="http://ecomunsing.com/build-your-own-blockchain"> Ecomunsing </a> but there has been some changes to make it simpler to understand. Also some code has been added to it to make it possible to run it in interactive mode from terminal.
 
 
 By running the script you will get an understandig of what a blockchain is, and by diving into to code you can see the parts that come together to make a blockchain.
