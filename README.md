@@ -1,8 +1,13 @@
+<h2>What is this? </h2>
 This is a simple blockchain application to demonstrate how blockchain works. The code has been borrowed from <a href="http://ecomunsing.com/build-your-own-blockchain"> Ecomunsing </a> but there has been some changes to make it simpler to understand. Also some code has been added to it to make it possible to run it in interactive mode from terminal.
 
+<h2> What does this do? </h2>
+This is a blockchain application that will keep the data of transactions (like bitcoin). Although it is only for learning. All the transactions are between two people: Alice and Bob whom play the role of sender and receiver in each transaction. The amount of transactions are generated randomly.
 
+<h2> What is this good for? </h2>
 By running the script you will get an understandig of what a blockchain is, and by diving into to code you can see the parts that come together to make a blockchain.
 
+<h2> How to Start? </h2>
 To understand How blockchain works:
 
 Copy the blockchain.py file to your local machine, open terminal and run the following command:
@@ -36,5 +41,5 @@ what do these do:
 	this will add the previous transactions to the blockchain. make sure to run part b before you want to add to the blockchain. 
   
 
-
-The doc will be completed soon.
+<h2> The code, Explained </h2>
+The doc will be completed soon. But at the moment you can read the tutorial on <a href="http://ecomunsing.com/build-your-own-blockchain"> Ecomunsing </a>.
