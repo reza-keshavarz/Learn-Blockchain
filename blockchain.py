@@ -1,6 +1,7 @@
 import hashlib, json, sys
+import random
 
-#In 1
+
 def hashMe(msg=""):
     #a helper that wraps hashing algorithm
     if type(msg) != str:
@@ -11,9 +12,6 @@ def hashMe(msg=""):
     else:
         return hashlib.sha256(str(msg).encode('utf-8')).hexdigest()
 
-#In 2
-import random
-
 def makeTransaction(maxValue=3):
     sign = int(random.getrandbits(1)) * 2 - 1
     amount = random.randint(1, maxValue)
@@ -21,12 +19,9 @@ def makeTransaction(maxValue=3):
     bobPays = -1 * alicePays
     return {u'Alice': alicePays, u'Bob': bobPays}
 
-#In 3
 def make_buffer():
     txnBuffer = [makeTransaction() for i in range(2)]
     return txnBuffer
-
-#In 4
 
 def updateState(txn, state):
     state = state.copy()
@@ -37,12 +32,10 @@ def updateState(txn, state):
             state[key] = txn[key]
     return state
 
-#In 5
 def isValidTxn(txn, state):
     if sum(txn.values()) is not 0:
         return False
 
-    #over draft meaning:
     for key in txn.keys():
         if key in state.keys():
             acctBalance = state[key]
@@ -52,11 +45,6 @@ def isValidTxn(txn, state):
             return False
     return True
 
-
-#In 6
-#this one is just test, not important
-
-#In 7
 def init():
     state = {u'Alice': 50, u'Bob': 50}
     genesisBlockTxns = [state]
@@ -65,10 +53,9 @@ def init():
     genesisBlock = {u'hash': genesisHash, u'contents': genesisBlockContents}
     genesisBlockStr = json.dumps(genesisBlock, sort_keys=True)
 
-    #In 8
     chain = [genesisBlock]
     return state, chain
-#In 9
+
 def makeBlock(txns, chain):
     parentBlock = chain[-1]
     parentHash = parentBlock[u'hash']
@@ -80,8 +67,6 @@ def makeBlock(txns, chain):
 
     return block
 
-#In 10
-blockSizeLimit = 5
 def add_block(txnBuffer, state, chain, blockSizeLimit=2):
     while len(txnBuffer) > 0:
         bufferStartSize = len(txnBuffer)
@@ -102,13 +87,6 @@ def add_block(txnBuffer, state, chain, blockSizeLimit=2):
         myBlock = makeBlock(txnList, chain)
         chain.append(myBlock)
 
-#In 11
-# print(chain[0])
-# print(chain[1])
-# print(state)
-
-
-#In 14
 def checkBlockHash(block):
     expectedHash = hashMe(block['contents'])
     if block['hash'] != expectedHash:
@@ -116,7 +94,6 @@ def checkBlockHash(block):
 
     return
 
-#In 15
 def checkBlockValidity(block, parent, state):
     parrentNumber = parent['contents']['blockNumber']
     parentHash = parent['hash']
@@ -137,7 +114,6 @@ def checkBlockValidity(block, parent, state):
 
     return state
 
-#In 16
 def checkChain(chain):
     if type(chain) == str:
         try:
@@ -160,32 +136,6 @@ def checkChain(chain):
         parent = block
 
     return state
-#In 17
-# print(checkChain(chain))
-
-
-#In 18
-# chainAsText = json.dumps(chain, sort_keys=True)
-# print(checkChain(chainAsText))
-
-#In 19
-import copy
-
-# nodeBchain = copy.copy(chain)
-# nodeBtxns = [makeTransaction() for i in range(5)]
-# newBlock = makeBlock(nodeBtxns, nodeBchain)
-
-#In 20
-# print("blockchain nodw A is currently {} blocks long".format(len(chain)))
-#
-# try:
-#     print("new block received; checking validity...")
-#     state = checkBlockValidity(newBlock, chain[-1], state)
-#     chain.append(newBlock)
-# except:
-#     print('invalid block, ignoring and waiting for next')
-#
-# print("blockchain on node A is now {} blocks long".format(len(chain)))
 
 def show_chain(chain):
     print("\n\n----------------Current-Chain----------------\n")
